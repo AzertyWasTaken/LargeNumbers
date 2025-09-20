@@ -1,6 +1,7 @@
 // This function generalizes hyperoperations.
-// f(n, 0) = 10^n
-// f(n, a + 1) = f^a(n, a)
+// f(a, 0) = 10^a
+// f(a, b + 1) = f^a(10, b)
+// f^{a+1}(a, b) = f(f^a(a, b), b)
 
 function f(a, b) {
     if (b <= 0) {
