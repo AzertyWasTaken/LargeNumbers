@@ -5,6 +5,7 @@
 function f(a, b) {
     if (b <= 0) {
         return 10**a;
+        
     } else {
         let n = 10;
         for (i = 0; i < a; i++) {
