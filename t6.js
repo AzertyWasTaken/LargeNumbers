@@ -1,3 +1,3 @@
-// This code uses nested exponentiation to return a large number.
+// Use nested exponentiation to make a larger number.
 
 return 10**10**10**10**10**10;

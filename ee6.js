@@ -1,3 +1,3 @@
-// This code uses exponentiation to return a large number.
+// Use exponentiation to make a larger number.
 
 return 10**1000000;

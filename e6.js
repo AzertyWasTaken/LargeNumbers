@@ -1,3 +1,3 @@
-// This code returns a number directly.
+// Return a number directly.
 
 return 1000000;
