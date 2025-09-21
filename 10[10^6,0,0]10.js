@@ -1,25 +1,29 @@
-// f(n, 0, 0, 0) = 10^n
-// f(n, 0, 0, c+1) = f(10, 0, n, c)
-// f(n, 0, b+1, c) = f(10, n, b, c)
-// f(n, a + 1, b, c) = f^n(10, a, b, c)
-// f^{n+1}(n, a, b, c) = f(f^n(n, a, b, c), a, b, c)
+// This function computes a fast-growing hierarchy up to f_{w^3}.
 
 function f(n, a, b, c) {
-    if (a == 0 && b == 0 && c == 0) {
-        return 10*n;
+    // console.log(a, b, c);
 
-    } else if (a == 0 && b == 0) {
-        return f(10, 0, n, c - 1);
+    if (a > 0) {
+        // f(n, a + 1, b, c) = f^n(10, a, b, c)
+        // f^{n+1}(n, a, b, c) = f(f^n(n, a, b, c), a, b, c)
 
-    } else if (a == 0) {
-        return f(10, n, b - 1, c);
-
-    } else {
         let k = 10;
-        for (i = 0; i < n; i++) {
+        for (let i = 0; i < n; i++) {
             k = f(k, a - 1, b, c);
         }
         return k;
+
+    } else if (b > 0) {
+        // f(n, 0, b+1, c) = f(10, n, b, c)
+        return f(10, n, b - 1, c);
+
+    } else if (c > 0) {
+        // f(n, 0, 0, c+1) = f(10, 0, n, c)
+        return f(10, 0, n, c - 1);
+
+    } else {
+        // f(n, 0, 0, 0) = 10^n
+        return 10*n;
     }
 }
 

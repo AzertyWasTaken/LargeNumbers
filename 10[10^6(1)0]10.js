@@ -6,11 +6,11 @@ function firstNonZero(a) {
     }
 }
 
-// This function computes a fast-growing hierarchy up to f_{w^w}.
+// This function computes a fast-growing hierarchy up to f_{w^(w+1)}.
 
-function f(n, a) {
+function f(n, a, b) {
     a = a.slice();
-    // console.log(a);
+    // console.log(a, b);
 
     if (a[0] > 0) {
         // f_{a+1}(n) = f_{a}^n(10)
@@ -18,7 +18,7 @@ function f(n, a) {
         a[0]--;
         let k = 10;
         for (let i = 0; i < n; i++) {
-            k = f(k, a);
+            k = f(k, a, b);
         }
         return k;
 
@@ -30,7 +30,17 @@ function f(n, a) {
         a[pos]--;
         if (a[a.length - 1] == 0) {a.pop();}
 
-        return f(10, a);
+        return f(10, a, b);
+
+    } else if (b > 0) {
+        // f_{w^w*(k+1)}(n) = f_{w^w*k+w^n}(10)
+
+        let array = [1];
+        for (let i = 0; i < n; i++) {
+            array.unshift(0);
+        }
+
+        return f(10, array, b - 1)
 
     } else {
         // f_0(n) = 10*n
@@ -38,11 +48,4 @@ function f(n, a) {
     }
 }
 
-// Create the array for the function.
-
-array = [1];
-for (let i = 0; i < 1000000; i++) {
-    array.unshift(0);
-}
-
-return f(10, array);
+return f(10, [0], 1000000);
