@@ -1,35 +1,35 @@
 // This function generalizes hyperoperations.
-// f(a, 0) = 10^a
-// f(a, b + 1) = f^a(10, b)
-// f^{a+1}(a, b) = f(f^a(a, b), b)
+// f(n, 0) = 10^n
+// f(n, a + 1) = f^n(10, a)
+// f^{n+1}(n, a) = f(f^n(n, a), a)
 
-function f(a, b) {
-    if (b <= 0) {
-        return 10**a;
-
+function f(n, a) {
+    if (a == 0) {
+        return 10*n;
+        
     } else {
-        let n = 10;
-        for (i = 0; i < a; i++) {
-            n = f(n, b - 1);
+        let k = 10;
+        for (i = 0; i < n; i++) {
+            k = f(k, a - 1);
         }
-        return n;
+        return k;
     }
 }
 
-// g(a, 0) = f(10, a)
-// g(a, b + 1) = g^a(10, b)
-// g^{a+1}(a, b) = g(f^a(a, b), b)
+// g(n, 0) = f(10, n)
+// g(n, a + 1) = g^n(10, a)
+// g^{n+1}(n, a) = g(f^n(n, a), a)
 
-function g(a, b) {
-    if (b <= 0) {
-        return f(10, a);
+function g(n, a) {
+    if (a == 0) {
+        return f(10, n);
         
     } else {
-        let n = 10;
-        for (i = 0; i < a; i++) {
-            n = g(n, b - 1);
+        let k = 10;
+        for (i = 0; i < n; i++) {
+            k = g(k, a - 1);
         }
-        return n;
+        return k;
     }
 }
 

@@ -1,26 +1,26 @@
-// f(a, 0, 0, 0) = 10^a
-// f(a, 0, 0, d+1) = f(10, 0, a, d)
-// f(a, 0, c+1, d) = f(10, a, c, d)
-// f(a, b + 1, c, d) = f^a(10, b, c, d)
-// f^{a+1}(a, b, c, d) = f(f^a(a, b, c, d), b, c, d)
+// f(n, 0, 0, 0) = 10^n
+// f(n, 0, 0, c+1) = f(10, 0, n, c)
+// f(n, 0, b+1, c) = f(10, n, b, c)
+// f(n, a + 1, b, c) = f^n(10, a, b, c)
+// f^{n+1}(n, a, b, c) = f(f^n(n, a, b, c), a, b, c)
 
-function f(a, b, c, d) {
-    if (b <= 0 && c <= 0 && d <= 0) {
-        return 10**a;
+function f(n, a, b, c) {
+    if (a == 0 && b == 0 && c == 0) {
+        return 10*n;
 
-    } else if (b <= 0 && c <= 0) {
-        return f(10, 0, a, d - 1);
+    } else if (a == 0 && b == 0) {
+        return f(10, 0, n, c - 1);
 
-    } else if (b <= 0) {
-        return f(10, a, c - 1, d);
+    } else if (a == 0) {
+        return f(10, n, b - 1, c);
 
     } else {
-        let n = 10;
-        for (i = 0; i < a; i++) {
-            n = f(n, b - 1, c, d);
+        let k = 10;
+        for (i = 0; i < n; i++) {
+            k = f(k, a - 1, b, c);
         }
-        return n;
+        return k;
     }
 }
 
-return f(10, 0, 1000000);
+return f(10, 0, 0, 1000000);
